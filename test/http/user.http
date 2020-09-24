@@ -1,0 +1,31 @@
+### Get All User
+GET http://localhost:3000/user
+Accept: application/json
+
+### Get By Id
+GET http://localhost:3000/user/1
+Accept: application/json
+
+### Create User
+POST http://localhost:3000/user/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Jonathan",
+  "lastName": "Dowdell"
+}
+
+### Update User
+PUT http://localhost:3000/user/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Jon",
+  "lastName": "Dowdell"
+}
+
+### Delete User
+DELETE http://localhost:3000/user/1
+Accept: application/json
