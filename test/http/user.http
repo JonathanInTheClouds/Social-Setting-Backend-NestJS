@@ -13,11 +13,13 @@ Content-Type: application/json
 
 {
   "firstName": "Jonathan",
-  "lastName": "Dowdell"
+  "lastName": "Dowdell",
+  "username": "Mettaworldj",
+  "password": "Password"
 }
 
 ### Update User
-PUT http://localhost:3000/user/1
+PUT http://localhost:3000/user/3
 Accept: application/json
 Content-Type: application/json
 
@@ -27,5 +29,5 @@ Content-Type: application/json
 }
 
 ### Delete User
-DELETE http://localhost:3000/user/1
+DELETE http://localhost:3000/user/4
 Accept: application/json
