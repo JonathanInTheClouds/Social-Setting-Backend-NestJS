@@ -1,11 +1,12 @@
 ### Get All User
 GET http://localhost:3000/user
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ldHRhd29ybGRqIiwic3ViIjoyLCJpYXQiOjE2MDExNzYxMjcsImV4cCI6MTYwMTE3OTcyN30.B_GBvfo2ZerPDso1lKua_PN5EDil09SJ3Bxj0KfZXU8
 
 ### Get By Id
-GET http://localhost:3000/user/1
+GET http://localhost:3000/user/2
 Accept: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ldHRhd29ybGRqIiwic3ViIjoyLCJpYXQiOjE2MDExNzYxMjcsImV4cCI6MTYwMTE3OTcyN30.B_GBvfo2ZerPDso1lKua_PN5EDil09SJ3Bxj0KfZXU8
 
 
 ### Update User
