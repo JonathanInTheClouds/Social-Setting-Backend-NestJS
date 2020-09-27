@@ -19,10 +19,6 @@ export class UserController {
     return this.userService.findOneById(id);
   }
 
-  @Post()
-  create(@Body() userDto: CreateUserDto): Promise<UserEntity> {
-    return this.userService.create(userDto);
-  }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() userToUpdate: CreateUserDto): Promise<UserEntity> {

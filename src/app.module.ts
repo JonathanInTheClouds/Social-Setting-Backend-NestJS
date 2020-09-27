@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'password',
+      password: 'Pro2711,.',
       database: 'social_setting_nestjs',
       autoLoadEntities: true,
       synchronize: true,

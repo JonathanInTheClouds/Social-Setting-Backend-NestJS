@@ -6,3 +6,20 @@ Content-Type: application/json
   "username": "Mettaworldj",
   "password": "Password"
 }
+
+### Create User
+POST http://localhost:3000/auth/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "Jonathan",
+  "lastName": "Dowdell",
+  "username": "Mettaworldj",
+  "password": "Password"
+}
+
+### Get Current User
+GET http://localhost:3000/auth/currentuser
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ldHRhd29ybGRqIiwic3ViIjoyLCJpYXQiOjE2MDExNzYxMjcsImV4cCI6MTYwMTE3OTcyN30.B_GBvfo2ZerPDso1lKua_PN5EDil09SJ3Bxj0KfZXU8
