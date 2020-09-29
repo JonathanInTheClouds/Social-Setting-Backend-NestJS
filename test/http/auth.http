@@ -1,5 +1,5 @@
 ### Login
-POST http://192.168.1.36:8081/auth/login
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
@@ -7,8 +7,10 @@ Content-Type: application/json
   "password": "Password"
 }
 
+> {% client.global.set("auth_token", response.body.access_token); %}
+
 ### Create User
-POST http://192.168.1.36:8081/auth/signup
+POST http://localhost:3000/auth/signup
 Accept: application/json
 Content-Type: application/json
 
@@ -22,4 +24,6 @@ Content-Type: application/json
 ### Get Current User
 GET http://localhost:3000/auth/currentuser
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1ldHRhd29ybGRqIiwic3ViIjoyLCJpYXQiOjE2MDExNzYxMjcsImV4cCI6MTYwMTE3OTcyN30.B_GBvfo2ZerPDso1lKua_PN5EDil09SJ3Bxj0KfZXU8
+Authorization: Bearer {{auth_token}}
+
+###
