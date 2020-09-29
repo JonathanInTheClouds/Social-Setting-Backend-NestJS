@@ -1,5 +1,5 @@
 ### Login
-POST http://localhost:3000/auth/login
+POST http://192.168.1.36:8081/auth/login
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### Create User
-POST http://localhost:3000/auth/signup
+POST http://192.168.1.36:8081/auth/signup
 Accept: application/json
 Content-Type: application/json
 

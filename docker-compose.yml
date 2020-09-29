@@ -23,7 +23,9 @@ services:
 
   social-setting-mysql:
     container_name: "Database"
-    image: library/mysql:5.7.31
+#    image: library/mysql:5.7.31
+#    image: arm64v8/mariadb
+    image: mariadb
     environment:
       - MYSQL_DATABASE=social_setting_nestjs
       - MYSQL_ROOT_PASSWORD=Pro2711,.

@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'mariadb',
       host: process.env.DATABASE != undefined ? "nestjsDB" : process.env.DATABASE,
       port: 3306,
       username: 'root',
