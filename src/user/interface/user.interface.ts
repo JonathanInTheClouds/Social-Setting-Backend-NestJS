@@ -1,3 +1,3 @@
 export interface IUser {
-  id: number, firstName: string, lastName: string, username: string, isActive: boolean
+  id: number, profileName: string, username: string, email: string, isActive: boolean
 }

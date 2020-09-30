@@ -7,13 +7,13 @@ export class UserEntity {
   id: number;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
+  profileName: string
 
   @Column()
   username: string;
+
+  @Column()
+  email: string
 
   @Column()
   password: string;

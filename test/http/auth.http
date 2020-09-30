@@ -15,8 +15,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "firstName": "Jonathan",
-  "lastName": "Dowdell",
+  "email": "jon@mail.com",
+  "profileName": "JonnyCode",
   "username": "Mettaworldj",
   "password": "Password"
 }
