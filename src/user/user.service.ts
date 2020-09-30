@@ -4,13 +4,15 @@ import { UserEntity } from './entity/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash } from 'bcrypt';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class UserService {
 
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>
+    private userRepository: Repository<UserEntity>,
+    private readonly mailerService: MailerService
   ) {}
 
   async findAll(): Promise<UserEntity[]> {
@@ -35,6 +37,7 @@ export class UserService {
     newUser.password = await hash(userDto.password, 10);
 
     try {
+      this.sendEmail();
       return this.userRepository.save(newUser);
     } catch (e) {
       return e;
@@ -69,5 +72,18 @@ export class UserService {
     }
   }
 
+  private sendEmail() {
+    this
+      .mailerService
+      .sendMail({
+        to: 'test@nestjs.com', // list of receivers
+        from: 'noreply@nestjs.com', // sender address
+        subject: 'Testing Nest MailerModule ✔', // Subject line
+        text: 'welcome', // plaintext body
+        html: '<b>welcome</b>', // HTML body content
+      })
+      .then(() => {console.log('sent')})
+      .catch((error) => {console.log(error)});
+  }
 
 }

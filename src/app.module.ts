@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -16,6 +17,20 @@ import { AuthModule } from './auth/auth.module';
       database: 'social_setting_nestjs',
       autoLoadEntities: true,
       synchronize: true,
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.mailtrap.io',
+        port: 2525,
+        secure: false,
+        auth: {
+          user: '20e2a8a78e5d4c',
+          pass: '181d02a948fedd'
+        },
+        defaults: {
+          from:'"nest-modules" <modules@nestjs.com>',
+        },
+      }
     }),
     UserModule,
     AuthModule
