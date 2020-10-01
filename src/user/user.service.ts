@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash } from 'bcrypt';
 import { MailerService } from '@nestjs-modules/mailer';
+import { SecureCodeEntity } from '../auth/entity/secure-code.entity';
 
 @Injectable()
 export class UserService {
@@ -12,6 +13,8 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(SecureCodeEntity)
+    private secureCodeRepository: Repository<SecureCodeEntity>,
     private readonly mailerService: MailerService
   ) {}
 
@@ -37,8 +40,12 @@ export class UserService {
     newUser.password = await hash(userDto.password, 10);
 
     try {
-      this.sendEmail();
-      return this.userRepository.save(newUser);
+      const secureCodeEntity = new SecureCodeEntity();
+      secureCodeEntity.code = this.getRandom(5);
+      secureCodeEntity.user = newUser;
+      const savedSecureCode = await this.secureCodeRepository.save(secureCodeEntity);
+      this.sendEmail(secureCodeEntity.code);
+      return savedSecureCode.user;
     } catch (e) {
       return e;
     }
@@ -72,18 +79,22 @@ export class UserService {
     }
   }
 
-  private sendEmail() {
+  private sendEmail(randomNumber: number) {
     this
       .mailerService
       .sendMail({
         to: 'test@nestjs.com', // list of receivers
         from: 'noreply@nestjs.com', // sender address
         subject: 'Testing Nest MailerModule ✔', // Subject line
-        text: 'welcome', // plaintext body
-        html: '<b>welcome</b>', // HTML body content
+        text: `${randomNumber}`, // plaintext body
+        // html: '<b>welcome</b>', // HTML body content
       })
       .then(() => {console.log('sent')})
       .catch((error) => {console.log(error)});
+  }
+
+  private getRandom(length) {
+    return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
   }
 
 }

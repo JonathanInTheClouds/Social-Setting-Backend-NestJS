@@ -17,7 +17,7 @@ Content-Type: application/json
 {
   "email": "jon@mail.com",
   "profileName": "JonnyCode",
-  "username": "Mettaworldj",
+  "username": "Mkettaworldj",
   "password": "Password"
 }
 
@@ -26,4 +26,11 @@ GET http://localhost:3000/auth/currentuser
 Accept: application/json
 Authorization: Bearer {{auth_token}}
 
-###
+### Verify User Code
+POST http://localhost:3000/auth/token/verifyCode
+Accept: application/json
+Content-Type: application/json
+
+{
+  "code": 49904
+}
