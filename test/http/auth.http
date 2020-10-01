@@ -16,8 +16,8 @@ Content-Type: application/json
 
 {
   "email": "jon@mail.com",
+  "username": "Mettaworldj",
   "profileName": "JonnyCode",
-  "username": "Mkettaworldj",
   "password": "Password"
 }
 
@@ -32,5 +32,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "code": 49904
+  "code": 23949
 }
+
+> {% client.global.set("auth_token", response.body.access_token); %}

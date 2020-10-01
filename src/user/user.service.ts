@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entity/user.entity';
 import { Repository } from 'typeorm';
@@ -12,9 +12,9 @@ export class UserService {
 
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(SecureCodeEntity)
-    private secureCodeRepository: Repository<SecureCodeEntity>,
+    private readonly secureCodeRepository: Repository<SecureCodeEntity>,
     private readonly mailerService: MailerService
   ) {}
 
@@ -30,7 +30,13 @@ export class UserService {
     return this.userRepository.findOne({ username })
   }
 
+  async findOneByEmail(email: string): Promise<UserEntity> {
+    return this.userRepository.findOne({ email })
+  }
+
   async create(userDto: CreateUserDto): Promise<UserEntity> {
+    await this.throwIfInvalidFields(userDto);
+
     const newUser = new UserEntity();
 
     Object.keys(userDto).forEach((key) => {
@@ -45,6 +51,7 @@ export class UserService {
       secureCodeEntity.user = newUser;
       const savedSecureCode = await this.secureCodeRepository.save(secureCodeEntity);
       this.sendEmail(secureCodeEntity.code);
+      Logger.debug(`Created ${savedSecureCode.user.username}`)
       return savedSecureCode.user;
     } catch (e) {
       return e;
@@ -89,12 +96,32 @@ export class UserService {
         text: `${randomNumber}`, // plaintext body
         // html: '<b>welcome</b>', // HTML body content
       })
-      .then(() => {console.log('sent')})
+      .then(() => {Logger.debug('Email sent')})
       .catch((error) => {console.log(error)});
   }
 
-  private getRandom(length) {
-    return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
+  private getRandom = length =>
+    Math.floor(Math.pow(10, length - 1) + Math.random() * 9 * Math.pow(10, length - 1));
+
+  private async throwIfInvalidFields(userDto: CreateUserDto) {
+    this.throwIfInvalidEmail(userDto.email);
+    await this.throwIfUserExist(userDto);
   }
 
+  private throwIfInvalidEmail = (email: string) => {
+    if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)))
+      throw new BadRequestException('Invalid Email', 'Please Enter Valid Email')
+  };
+
+  private async throwIfUserExist(userDto: CreateUserDto) {
+    const userFromEmail = await this.findOneByEmail(userDto.email);
+    const userFromUsername = await this.findOneByUsername(userDto.username);
+    const errorSubject = 'Existing Field(s)';
+    if (userFromEmail && userFromUsername)
+      throw new ConflictException(errorSubject, 'Email & Username already Exist');
+    if (userFromEmail)
+      throw new ConflictException(errorSubject, 'Email already Exist');
+    if (userFromUsername)
+      throw new ConflictException(errorSubject, 'Username already Exist');
+  }
 }

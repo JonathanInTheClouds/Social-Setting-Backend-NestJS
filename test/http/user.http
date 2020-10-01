@@ -20,6 +20,6 @@ Content-Type: application/json
 }
 
 ### Delete User
-DELETE http://localhost:3000/user/1
+DELETE http://localhost:3000/user/2
 Accept: application/json
 Authorization: Bearer {{auth_token}}
