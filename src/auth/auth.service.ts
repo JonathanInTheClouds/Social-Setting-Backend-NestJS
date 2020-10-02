@@ -7,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { SecureCodeEntity } from './entity/secure-code.entity';
 import { Repository } from 'typeorm';
 import { SecureCodeDto } from './dto/secure-code.dto';
-import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError';
 import { UserEntity } from '../user/entity/user.entity';
 
 @Injectable()

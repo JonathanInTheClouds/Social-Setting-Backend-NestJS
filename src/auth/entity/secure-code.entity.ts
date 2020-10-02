@@ -17,6 +17,6 @@ export class SecureCodeEntity {
   @JoinColumn()
   user: UserEntity;
 
-  // @Column({type: 'timestamp'})
-  // expiryDate: Date;
+  @Column({type: 'timestamp'})
+  expiryDate: Date;
 }

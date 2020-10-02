@@ -9,6 +9,6 @@ import { SecureCodeEntity } from '../auth/entity/secure-code.entity';
   imports: [TypeOrmModule.forFeature([UserEntity, SecureCodeEntity])],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService]
+  exports: [UserService, TypeOrmModule]
 })
 export class UserModule {}

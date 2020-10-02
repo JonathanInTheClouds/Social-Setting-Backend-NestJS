@@ -21,4 +21,7 @@ export class UserEntity {
   @Column({ default: false })
   isActive: boolean;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdDate: Date
+
 }

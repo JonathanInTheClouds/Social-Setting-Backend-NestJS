@@ -1,0 +1,9 @@
+POST http://localhost:3000/subSetting
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "CS",
+  "description": "A place where CS people talk"
+}
