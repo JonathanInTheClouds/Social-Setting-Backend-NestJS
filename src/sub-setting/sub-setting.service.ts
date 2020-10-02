@@ -3,9 +3,9 @@ import { CreateSubSettingDto } from './dto/create-sub-setting.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SubSettingEntity } from './entity/sub-setting.entity';
 import { Repository } from 'typeorm';
-import { REQUEST } from '@nestjs/core'
+import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
-import { UserEntity } from '../user/entity/user.entity';
+import { ResponseSubSettingDto } from './dto/response-sub-setting.dto';
 
 @Injectable({ scope: Scope.REQUEST })
 export class SubSettingService {
@@ -24,12 +24,12 @@ export class SubSettingService {
       newSubSetting[key] = subSettingDto[key];
     })
 
-    const currentUser: UserEntity = this.request.user['full'];
-
-    newSubSetting.user = currentUser;
+    newSubSetting.user = this.request.user['full'];
 
     try {
       const subSettingEntity = await this.subSettingRepository.save(newSubSetting);
+      const responseSubSettingDto = new ResponseSubSettingDto();
+
       return subSettingEntity;
     } catch (e) {
       return e;
