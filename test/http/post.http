@@ -1,0 +1,26 @@
+### Create Post
+POST http://localhost:3000/post
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "subSettingName": "CS",
+  "postName": "Hardest class in CS?",
+  "description": "And whats make it so hard, compared to other classes?"
+}
+
+### Find All Post
+GET http://localhost:3000/post/
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+### Find Post by Id
+GET http://localhost:3000/post/1
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+### Delete by Id
+DELETE http://localhost:3000/post/3
+Authorization: Bearer {{auth_token}}
+Accept: application/json
