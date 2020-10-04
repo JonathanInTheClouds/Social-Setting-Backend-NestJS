@@ -14,10 +14,14 @@ export class SubSettingEntity {
   @Column({ nullable: false })
   description: string;
 
-  @ManyToOne(() => UserEntity)
-  user: UserEntity;
+  @ManyToOne(() => UserEntity, {
+    lazy: true
+  })
+  user: Promise<UserEntity>;
 
-  @OneToMany(() => PostEntity, post => post.subSetting)
-  posts: PostEntity[];
+  @OneToMany(() => PostEntity, post => post.subSetting, {
+    lazy: true
+  })
+  posts: Promise<PostEntity[]>;
 
 }
