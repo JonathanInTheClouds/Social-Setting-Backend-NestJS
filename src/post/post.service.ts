@@ -39,7 +39,11 @@ export class PostService {
   }
 
   async findAll() {
-    return await this.postRepository.find();
+    return await this.postRepository.find({
+      order: {
+        createdDate: 'DESC'
+      }
+    });
   }
 
   async findById(id: number) {
