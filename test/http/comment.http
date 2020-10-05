@@ -1,0 +1,15 @@
+### Create Comment
+POST http://localhost:3000/comment
+Accept: application/json
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "postId": 1,
+  "text": "Hello World"
+}
+
+### Get All Comments
+GET http://localhost:3000/comment
+Accept: application/json
+Authorization: Bearer {{auth_token}}

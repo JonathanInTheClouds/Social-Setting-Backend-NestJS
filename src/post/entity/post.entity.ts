@@ -18,12 +18,12 @@ export class PostEntity {
   voteCount: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdDate: Timestamp
+  createdDate: Timestamp;
 
   @ManyToOne(() => SubSettingEntity, subSetting => subSetting.posts, {
       eager: true,
       cascade: true
-    })
+  })
   subSetting: SubSettingEntity;
 
   @ManyToOne(() => UserEntity, {
