@@ -27,7 +27,7 @@ export class PostEntity {
   subSetting: SubSettingEntity;
 
   @ManyToOne(() => UserEntity, {
-    lazy: true
+    eager: true
   })
   user: UserEntity;
 

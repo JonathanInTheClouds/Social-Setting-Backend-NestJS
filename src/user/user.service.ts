@@ -27,7 +27,9 @@ export class UserService {
   }
 
   async findOneByUsername(username: string): Promise<UserEntity> {
-    return this.userRepository.findOne({ username })
+    return this.userRepository.findOne({ username }, { select: [
+      'username', 'password', 'profileName', 'isActive', 'createdDate', 'email', 'id'
+      ] })
   }
 
   async findOneByEmail(email: string): Promise<UserEntity> {
