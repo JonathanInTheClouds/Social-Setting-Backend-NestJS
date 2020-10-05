@@ -5,10 +5,9 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { PostService } from './post/post.service';
 import { PostModule } from './post/post.module';
-import { SubSettingService } from './sub-setting/sub-setting.service';
 import { SubSettingModule } from './sub-setting/sub-setting.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -40,8 +39,9 @@ import { SubSettingModule } from './sub-setting/sub-setting.module';
     AuthModule,
     PostModule,
     SubSettingModule,
+    CommentModule,
   ],
   controllers: [AppController],
-  providers: [AppService, SubSettingService],
+  providers: [AppService],
 })
 export class AppModule {}
