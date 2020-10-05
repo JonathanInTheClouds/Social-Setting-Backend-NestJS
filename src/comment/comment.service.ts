@@ -46,7 +46,16 @@ export class CommentService {
   }
 
   async findAll() {
-    return await this.commentRepository.find();
+    return await this.commentRepository.find({
+      relations: ['user']
+    });
+  }
+
+  async delete(id: number) {
+    const targetComment = await this.commentRepository.findOne({ id });
+    if (!targetComment)
+      throw new NotFoundException('Not Found', `ID: ${targetComment.id} not found`)
+    return await this.commentRepository.remove(targetComment);
   }
 
 }

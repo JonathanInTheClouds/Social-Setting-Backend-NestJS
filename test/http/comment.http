@@ -13,3 +13,8 @@ Content-Type: application/json
 GET http://localhost:3000/comment
 Accept: application/json
 Authorization: Bearer {{auth_token}}
+
+### Delete Comment
+DELETE http://localhost:3000/comment/2
+Accept: application/json
+Authorization: Bearer {{auth_token}}
