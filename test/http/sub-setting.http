@@ -9,6 +9,17 @@ Content-Type: application/json
   "description": "A place where CS people talk"
 }
 
+### Create SubSetting 2
+POST http://localhost:3000/subSetting
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "College",
+  "description": "A place where College students talk"
+}
+
 ### Find All SubSetting
 GET http://localhost:3000/subSetting
 Authorization: Bearer {{auth_token}}

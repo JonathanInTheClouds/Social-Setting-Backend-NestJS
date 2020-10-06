@@ -15,9 +15,9 @@ export class SubSettingEntity {
   description: string;
 
   @ManyToOne(() => UserEntity, {
-    lazy: true
+    eager: true,
   })
-  user: Promise<UserEntity>;
+  user: UserEntity
 
   @OneToMany(() => PostEntity, post => post.subSetting, {
     lazy: true

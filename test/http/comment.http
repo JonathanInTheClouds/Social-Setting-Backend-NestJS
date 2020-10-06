@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "postId": 1,
-  "text": "Hello World"
+  "text": "Calculus, because calculus"
 }
 
 ### Get All Comments

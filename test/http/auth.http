@@ -32,7 +32,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "code": 25515
+  "code": 50071
 }
 
 > {% client.global.set("auth_token", response.body.access_token); %}

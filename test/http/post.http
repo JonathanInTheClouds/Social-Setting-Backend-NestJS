@@ -10,6 +10,18 @@ Content-Type: application/json
   "description": "And whats make it so hard, compared to other classes?"
 }
 
+### Create Post
+POST http://localhost:3000/post
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "subSettingName": "College",
+  "postName": "Hardest class in College?",
+  "description": "And whats make it so hard, compared to other classes?"
+}
+
 ### Find All Post
 GET http://localhost:3000/post/
 Authorization: Bearer {{auth_token}}
