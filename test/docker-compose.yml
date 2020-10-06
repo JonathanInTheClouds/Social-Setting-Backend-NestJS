@@ -2,7 +2,7 @@ version: '3'
 
 services:
   social-setting-mysql:
-    container_name: "Database"
+    container_name: "Social-Setting-NestJS-Database"
     image: library/mysql:5.7.31
     environment:
       - MYSQL_DATABASE=social_setting_nestjs
