@@ -34,15 +34,11 @@ export class SubSettingService {
   }
 
   async findAll() {
-    return await this.subSettingRepository.find({
-      relations: ['posts', 'user']
-    });
+    return await this.subSettingRepository.find();
   }
 
   async findById(id: number) {
-    return await this.subSettingRepository.findOne({ id }, {
-      relations: ['posts']
-    })
+    return await this.subSettingRepository.findOne({ id })
   }
 
   async deleteById(id: number) {

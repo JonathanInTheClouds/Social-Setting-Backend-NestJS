@@ -15,7 +15,7 @@ Authorization: Bearer {{auth_token}}
 Accept: application/json
 
 ### Find by Id
-GET http://localhost:3000/subSetting/7
+GET http://localhost:3000/subSetting/1
 Authorization: Bearer {{auth_token}}
 Accept: application/json
 
