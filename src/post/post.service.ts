@@ -2,10 +2,11 @@ import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SubSettingEntity } from '../sub-setting/entity/sub-setting.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { PostEntity } from './entity/post.entity';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
+import { UserEntity } from '../user/entity/user.entity';
 
 @Injectable({ scope: Scope.REQUEST })
 export class PostService {
@@ -40,6 +41,24 @@ export class PostService {
 
   async findAll() {
     return await this.postRepository.find({
+      order: {
+        createdDate: 'DESC'
+      }
+    });
+  }
+
+  async findAllBySubSetting(): Promise<PostEntity[]> {
+    const currentUser: UserEntity = this.request.user['full'];
+    const subSettingEntitiesIds = (await this.subSettingRepository.find({
+      where: {
+        user: currentUser
+      }
+    })).map(u => u.id);
+
+    return await this.postRepository.find({
+      where: {
+        subSetting: In([subSettingEntitiesIds]),
+      },
       order: {
         createdDate: 'DESC'
       }

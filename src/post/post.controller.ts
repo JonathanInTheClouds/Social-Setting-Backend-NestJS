@@ -23,7 +23,7 @@ export class PostController {
 
   @Get()
   findAll() {
-    return this.postService.findAll();
+    return this.postService.findAllBySubSetting();
   }
 
   @Delete(':id')
